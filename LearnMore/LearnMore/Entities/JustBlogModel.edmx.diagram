@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4626f9a8166f4680b2651ecb51ed82d4" Name="Diagram1">
+        <EntityTypeShape EntityType="JustBlogModel.Category" Width="1.5" PointX="0.75" PointY="2.875" />
+        <EntityTypeShape EntityType="JustBlogModel.Comment" Width="1.5" PointX="5.25" PointY="5.25" />
+        <EntityTypeShape EntityType="JustBlogModel.Post" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="JustBlogModel.PostTagMap" Width="1.5" PointX="5.25" PointY="1.875" />
+        <EntityTypeShape EntityType="JustBlogModel.Role" Width="1.5" PointX="7.75" PointY="1.5" />
+        <EntityTypeShape EntityType="JustBlogModel.Tag" Width="1.5" PointX="3" PointY="6.875" />
+        <EntityTypeShape EntityType="JustBlogModel.User" Width="1.5" PointX="10" PointY="1" />
+        <AssociationConnector Association="JustBlogModel.FKEAE98E9B93F2FE0" />
+        <AssociationConnector Association="JustBlogModel.FK_Comment_Post" />
+        <AssociationConnector Association="JustBlogModel.FK6C4CB8685C756BA2" />
+        <AssociationConnector Association="JustBlogModel.FK6C4CB86878409102" />
+        <AssociationConnector Association="JustBlogModel.FK_User_Role" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

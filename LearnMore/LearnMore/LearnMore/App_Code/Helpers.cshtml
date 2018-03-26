@@ -1,0 +1,8 @@
+﻿@helper Tags(System.Web.Mvc.HtmlHelper htmlHelper, IList<Entities.Tag> tags)
+{
+    foreach (var tag in tags)
+    {
+        @LearnMore.ActionLinkExtensions.TagLink(htmlHelper, tag)
+    }
+}
+

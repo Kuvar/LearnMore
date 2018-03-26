@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Entities.Comment>
+   
+@foreach (var item in Model)
+{
+    <div class="comment">
+        <a href="#"><img src="@Url.Content("~/Content/images/userpic.gif")" width="40" height="40" alt="" class="userpic" /></a>
+        <p>
+            <a href="#">@item.CommentedBy</a> Says:<br />
+            @item.CommentedDate.ToString("MMMM") @item.CommentedDate.Day, @item.CommentedDate.Year at @item.CommentedDate.ToString("hh:mm tt")
+        </p>
+        @Html.Raw(item.Comment1)
+    </div>
+}
+

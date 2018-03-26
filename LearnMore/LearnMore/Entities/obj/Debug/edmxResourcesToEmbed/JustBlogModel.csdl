@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JustBlogModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="JustBlogEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="JustBlogModel.Category" />
+    <EntitySet Name="Comments" EntityType="JustBlogModel.Comment" />
+    <EntitySet Name="Posts" EntityType="JustBlogModel.Post" />
+    <EntitySet Name="PostTagMaps" EntityType="JustBlogModel.PostTagMap" />
+    <EntitySet Name="Roles" EntityType="JustBlogModel.Role" />
+    <EntitySet Name="Tags" EntityType="JustBlogModel.Tag" />
+    <EntitySet Name="Users" EntityType="JustBlogModel.User" />
+    <AssociationSet Name="FKEAE98E9B93F2FE0" Association="JustBlogModel.FKEAE98E9B93F2FE0">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Post" Association="JustBlogModel.FK_Comment_Post">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK6C4CB8685C756BA2" Association="JustBlogModel.FK6C4CB8685C756BA2">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="PostTagMap" EntitySet="PostTagMaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK6C4CB86878409102" Association="JustBlogModel.FK6C4CB86878409102">
+      <End Role="Tag" EntitySet="Tags" />
+      <End Role="PostTagMap" EntitySet="PostTagMaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="JustBlogModel.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UrlSlug" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Posts" Relationship="JustBlogModel.FKEAE98E9B93F2FE0" FromRole="Category" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PostId" Type="Int32" Nullable="false" />
+    <Property Name="CommentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CommentedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CommentedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Post" Relationship="JustBlogModel.FK_Comment_Post" FromRole="Comment" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ShortDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Meta" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="UrlSlug" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Published" Type="Boolean" Nullable="false" />
+    <Property Name="PostedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="JustBlogModel.FKEAE98E9B93F2FE0" FromRole="Post" ToRole="Category" />
+    <NavigationProperty Name="Comments" Relationship="JustBlogModel.FK_Comment_Post" FromRole="Post" ToRole="Comment" />
+    <NavigationProperty Name="PostTagMaps" Relationship="JustBlogModel.FK6C4CB8685C756BA2" FromRole="Post" ToRole="PostTagMap" />
+  </EntityType>
+  <EntityType Name="PostTagMap">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Post_id" Type="Int32" Nullable="false" />
+    <Property Name="Tag_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Post" Relationship="JustBlogModel.FK6C4CB8685C756BA2" FromRole="PostTagMap" ToRole="Post" />
+    <NavigationProperty Name="Tag" Relationship="JustBlogModel.FK6C4CB86878409102" FromRole="PostTagMap" ToRole="Tag" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="JustBlogModel.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UrlSlug" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PostTagMaps" Relationship="JustBlogModel.FK6C4CB86878409102" FromRole="Tag" ToRole="PostTagMap" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <Property Name="Isactive" Type="Boolean" />
+    <NavigationProperty Name="Role" Relationship="JustBlogModel.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FKEAE98E9B93F2FE0">
+    <End Type="JustBlogModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="JustBlogModel.Post" Role="Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Post">
+    <End Type="JustBlogModel.Post" Role="Post" Multiplicity="1" />
+    <End Type="JustBlogModel.Comment" Role="Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK6C4CB8685C756BA2">
+    <End Type="JustBlogModel.Post" Role="Post" Multiplicity="1" />
+    <End Type="JustBlogModel.PostTagMap" Role="PostTagMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostTagMap">
+        <PropertyRef Name="Post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK6C4CB86878409102">
+    <End Type="JustBlogModel.Tag" Role="Tag" Multiplicity="1" />
+    <End Type="JustBlogModel.PostTagMap" Role="PostTagMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tag">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostTagMap">
+        <PropertyRef Name="Tag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Type="JustBlogModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="JustBlogModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

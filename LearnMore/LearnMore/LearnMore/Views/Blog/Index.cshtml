@@ -1,0 +1,29 @@
+﻿@model LearnMore.Models.ListViewModel
+
+@{
+    ViewBag.Title = "Blog";
+}
+
+
+<div id="content" class="mainbar">
+
+    @if (Model.Posts.Count > 0)
+    {
+        foreach (var post in Model.Posts)
+        {
+            @Html.Partial("_PostTemplate", post)
+        }
+    }
+    else
+    {
+        <p>No posts found!</p>
+    }
+    @Html.Partial("_Pager", Model)
+
+</div>
+
+<div class="sidebar">
+    @Html.Partial("_Search")
+    <div class="clr"></div>
+    @Html.Action("Sidebars")
+</div>

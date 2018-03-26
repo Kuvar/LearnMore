@@ -1,0 +1,66 @@
+﻿@model LearnMore.Models.LoginModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Log in";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        body {
+            background: url('../../Content/images/Eor57Ae.jpg') no-repeat fixed center center;
+            background-size: cover;
+            font-family: Montserrat;
+        }
+
+        .logo {
+            width: 213px;
+            height: 36px;
+            /*background: url('http://i.imgur.com/fd8Lcso.png') no-repeat;*/
+            margin: 30px auto;
+        }
+
+        #loginForm {
+            position: fixed;
+            top: 30%;
+            left: 45%;
+            margin-top: -50px;
+            margin-left: -100px;
+        }
+    </style>
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <section id="loginForm">
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            
+            <div class="login-block">
+                <h1>Login</h1>
+                @Html.TextBoxFor(m => m.UserName, new { placeholder = "Username" })
+                @Html.ValidationMessageFor(m => m.UserName)
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.Password)
+                <input type="submit" class="button" value="Log in" />
+                <p>
+                    @Html.ActionLink("Register", "Register") if you don't have an account.
+                </p>
+            </div>
+
+
+        }
+    </section>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+</body>
+</html>

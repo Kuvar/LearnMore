@@ -1,0 +1,35 @@
+﻿@model Entities.Comment
+
+<h2><span>Leave a</span> Reply</h2>
+<div class="clr"></div>
+@using (Html.BeginForm("AddComment", "Blog", FormMethod.Post, new { @id = "AddComment" }))
+{
+    <ol>
+        <li>
+            <label for="name">Name (required)</label>
+            <div>@Html.TextBoxFor(m => m.CommentedBy, new { @class = "text" })</div>
+            @Html.ValidationMessageFor(m => m.CommentedBy)
+        </li>
+        <li>
+            <label for="email">Email Address (required)</label>
+            <div>@Html.TextBoxFor(m => m.Email, new { @class = "text", @Type="Email" })</div>
+            @Html.ValidationMessageFor(m => m.Email)
+        </li>
+        <li>
+            <label for="website">Mobile No.</label>
+            <div>@Html.TextBoxFor(m => m.Url, new { @class = "text" })</div>
+            @Html.ValidationMessageFor(m => m.Url)
+        </li>
+        <li>
+            <label for="message">Your Message</label>
+            <div>@Html.TextAreaFor(m => m.CommentText, new { @rows = "8", @cols = "50" })</div>
+            @Html.ValidationMessageFor(m => m.CommentText)
+        </li>
+        <li style="padding:10px">
+            @Html.HiddenFor(m=>m.PostId)
+            <input type="button" name="imageField" id="imageField" value="Submit" class="btn btn-info active">
+            
+            <div class="clr"></div>
+        </li>
+    </ol>
+}

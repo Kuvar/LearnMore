@@ -1,0 +1,54 @@
+﻿@model LearnMore.Models.ListViewModel
+
+@{
+    var currentPage = ViewContext.RequestContext.HttpContext.Request["p"] != null ? int.Parse(ViewContext.RequestContext.HttpContext.Request["p"]) : 1;
+    var totalPages = Math.Ceiling((double)Model.TotalPosts / 10);
+}
+
+@if (currentPage > 1 || currentPage < totalPages)
+{
+    var p = string.Format("p={0}", currentPage - 1);
+    var n = string.Format("p={0}", currentPage + 1);
+
+    if (ViewContext.RouteData.Values["action"].ToString().Equals("search", StringComparison.OrdinalIgnoreCase))
+    {
+        var s = String.Format("?s={0}", ViewContext.RequestContext.HttpContext.Request.QueryString["s"]);
+        p = String.Format("{0}&{1}", s, p);
+        n = String.Format("{0}&{1}", s, n);
+    }
+    else
+    {
+        p = String.Concat("?", p);
+        n = String.Concat("?", n);
+    }
+
+    if (totalPages > 1)
+    {
+        <p class="pages">
+            <small>Page @currentPage of @totalPages</small>
+            @if (currentPage > 1)
+            {
+                <a href="?p=@(currentPage - 1)" title="Previous" class="previous">Previous</a>
+            }
+            @for (int i = 1; i < totalPages + 1; i++)
+            {
+                if ((i >= currentPage - 2 && i <= currentPage + 2 || i <= 2 || i >= totalPages - 2) || totalPages <= 7)
+                {
+                    if (i == currentPage)
+                    {
+                        <span>@currentPage</span>
+                    }
+                    else
+                    {
+                        <a href="?p=@i">@i</a>
+                    }
+                }
+            }
+
+            @if (currentPage < totalPages)
+            {
+                <a href="?p=@(currentPage + 1)" title="Next" class="next">Next</a>
+            }
+        </p>
+    }
+}

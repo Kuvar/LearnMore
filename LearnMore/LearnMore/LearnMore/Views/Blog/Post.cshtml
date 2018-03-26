@@ -1,0 +1,73 @@
+﻿@using LearnMore;
+@using Entities;
+@model Entities.Post
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Keywords = string.Join(" ", Model.PostTagMaps.Select(t=>t.Tag.Name).ToArray());
+    ViewBag.Description = Model.Meta;
+
+    List<Tag> tags = new List<Tag>();
+    foreach (var item in Model.PostTagMaps)
+    {
+        tags.Add(item.Tag);
+    }
+}
+
+<div class="content_resize">
+    <div class="mainbar">
+        <div class="article">
+            <h1>@Html.PostLink(Model)</h1>
+            <div class="clr"></div>
+            <p>Posted by <a href="#">Admin</a></p>
+            @Html.Raw(Model.Description)
+            <p class="post-tags">Tagged:&nbsp;@Helpers.Tags(Html, tags)</p>
+            <p><a href="#article"><strong>Comments (@Model.Comments.Count)</strong></a> <span>&nbsp;&bull;&nbsp;</span> @Model.PostedOn.ToConfigLocalTime() <span>&nbsp;&bull;&nbsp;</span> <a href="#"><strong>Edit</strong></a></p>
+        </div>
+        <div class="article" id="article">
+            <h2><span>@Model.Comments.Count</span> Responses</h2>
+            <div class="clr"></div>
+            @if (Model.Comments.Count > 0)
+             {@Html.Partial("Comments", Model.Comments)}
+
+
+        </div>
+        <div class="article">        
+            @{Html.RenderAction("AddComment", "Blog", new { id = Model.Id });}
+        </div>
+    </div>
+    <div class="sidebar">
+        @Html.Partial("_Search")
+        <div class="clr"></div>
+        @Html.Action("Sidebars")
+    </div>
+    <div class="clr"></div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <script type="text/javascript">
+        $('#imageField').click(function () {
+            if ($("#AddComment").valid()) {
+                $.ajax({
+                    url: "@Url.Action("AddComment", "Blog")",
+                    type: 'POST',
+                    data: $("#AddComment").serialize(),
+                    success: function (data) {
+                        if (data.IsSuccess) {
+                            // Clear the input tags
+                            formContainer.find("input[type='text']").each(function (i, element) {
+                                $(this).val('');
+                            });
+                        }
+                        alert(data.Message);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            }
+        });
+    </script>
+}

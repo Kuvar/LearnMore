@@ -1,0 +1,26 @@
+G:\DOT NET\LearnMore\Entities\bin\Debug\Entities.dll.config
+G:\DOT NET\LearnMore\Entities\bin\Debug\Entities.dll
+G:\DOT NET\LearnMore\Entities\bin\Debug\Entities.pdb
+G:\DOT NET\LearnMore\Entities\bin\Debug\EntityFramework.dll
+G:\DOT NET\LearnMore\Entities\bin\Debug\EntityFramework.xml
+G:\DOT NET\LearnMore\Entities\obj\Debug\Entities.dll
+G:\DOT NET\LearnMore\Entities\obj\Debug\Entities.pdb
+G:\DOT NET\LearnMore\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache
+F:\DOT NET\LearnMore\Entities\bin\Debug\Entities.dll.config
+F:\DOT NET\LearnMore\Entities\bin\Debug\Entities.dll
+F:\DOT NET\LearnMore\Entities\bin\Debug\Entities.pdb
+F:\DOT NET\LearnMore\Entities\bin\Debug\EntityFramework.dll
+F:\DOT NET\LearnMore\Entities\bin\Debug\EntityFramework.xml
+F:\DOT NET\LearnMore\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache
+F:\DOT NET\LearnMore\Entities\obj\Debug\Entities.dll
+F:\DOT NET\LearnMore\Entities\obj\Debug\Entities.pdb
+D:\LearnMore\Entities\bin\Debug\Entities.dll.config
+D:\LearnMore\Entities\bin\Debug\Entities.dll
+D:\LearnMore\Entities\bin\Debug\Entities.pdb
+D:\LearnMore\Entities\bin\Debug\EntityFramework.dll
+D:\LearnMore\Entities\bin\Debug\EntityFramework.xml
+D:\LearnMore\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+D:\LearnMore\Entities\obj\Debug\Entities.csproj.CopyComplete
+D:\LearnMore\Entities\obj\Debug\Entities.dll
+D:\LearnMore\Entities\obj\Debug\Entities.pdb
+D:\LearnMore\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache

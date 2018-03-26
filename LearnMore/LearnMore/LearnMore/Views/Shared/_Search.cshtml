@@ -1,0 +1,10 @@
+﻿<div class="searchform">
+    @using (Html.BeginForm("Search", "Blog", FormMethod.Get, new { id = "formsearch" }))
+    {
+        <span>
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" placeholder="Search our ste:" type="text" />
+        </span>
+        <input name="button_search" src="@Url.Content("~/Content/images/search.gif")" class="button_search" type="image" />
+    }
+</div>
+

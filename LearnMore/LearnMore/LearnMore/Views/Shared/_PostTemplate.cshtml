@@ -1,0 +1,24 @@
+﻿@using LearnMore;
+@using Entities;
+@model Entities.Post
+           @{
+               List<Tag> tags = new List<Tag>();
+               foreach (var item in Model.PostTagMaps)
+               {
+                   tags.Add(item.Tag);
+               }
+           }
+
+<div class="article">
+    <h2><span>@Html.PostLink(Model)</span></h2>
+    <p class="infopost">Posted <span class="date">on @Model.PostedOn.ToConfigLocalTime()</span> by <a href="#">Admin</a> &nbsp;&nbsp;|&nbsp;&nbsp; Filed under @Helpers.Tags(Html, tags) <a href="#" class="com">Comments <span>(7)</span></a></p>
+    <div class="clr"></div>
+    <div class="img"></div>
+    <div class="post_content">
+        @Html.Raw(Model.ShortDescription)
+        <p class="spec">
+            @Html.ActionLink("Read more", "ReadMore", "blog", new { year = Model.PostedOn.Year, month = Model.PostedOn.Month, day = Model.PostedOn.Day, title = Model.UrlSlug }, new { title = "Read more", @class = "rm" })
+        </p>
+    </div>
+    <div class="clr"></div>
+</div>
